@@ -27,3 +27,11 @@
                                 "C-n C-SPC C-e M-x sort-words"
                                 12
                                 19))))
+
+(ert-deftest sort-words-on-multiple-lines ()
+  "sort words on multiple lines, don't respect the newline"
+  (should (string= "1 aa bar bb foo zz"
+                   (set-up-line buffer-content
+                                "C-SPC C-n C-e M-x sort-words"
+                                1
+                                19))))
