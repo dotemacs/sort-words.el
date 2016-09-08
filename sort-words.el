@@ -44,7 +44,7 @@
 
 ;;; Code:
 
-(defun list-to-string (lst)
+(defun sort-words-list-to-string (lst)
   "convert a given list LST to a string, joined with spaces"
   (mapconcat 'identity lst " "))
 
@@ -61,7 +61,7 @@
       (save-excursion
         (save-restriction
           (narrow-to-region start end)
-          (let ((words (list-to-string (sort-words-in-region (point-min) (point-max)))))
+          (let ((words (sort-words-list-to-string (sort-words-in-region (point-min) (point-max)))))
             (delete-region (point-min) (point-max))
             (goto-char (point-min))
             (insert words))))
