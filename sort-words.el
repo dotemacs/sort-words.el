@@ -5,7 +5,7 @@
 ;; Author: "Aleksandar Simic" <asimic@gmail.com>
 ;; License: BSD
 ;; Created: 2016-09-07
-;; Version: 0.0.2
+;; Version: 0.0.3
 ;; Homepage: http://github.org/dotemacs/sort-words.el
 ;; Keywords: tools
 
@@ -57,15 +57,13 @@
   "Select a region, sort words within it
    and insert them replacing the existing region"
   (interactive "r")
-  (if (use-region-p)
-      (save-excursion
-        (save-restriction
-          (narrow-to-region start end)
-          (let ((words (sort-words-list-to-string (sort-words-in-region (point-min) (point-max)))))
-            (delete-region (point-min) (point-max))
-            (goto-char (point-min))
-            (insert words))))
-    (message "no region has been selected")))
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (let ((words (sort-words-list-to-string (sort-words-in-region (point-min) (point-max)))))
+        (delete-region (point-min) (point-max))
+        (goto-char (point-min))
+        (insert words)))))
 
 (provide 'sort-words)
 
