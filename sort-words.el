@@ -1,4 +1,4 @@
-;; sort-words.el --- Sort words in a selected region
+;;; sort-words.el --- Sort words in a selected region
 
 ;; Filename: sort-words.el
 ;; Description: Sort words in a selected region
