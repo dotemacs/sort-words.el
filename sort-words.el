@@ -5,7 +5,7 @@
 ;; Author: "Aleksandar Simic" <asimic@gmail.com>
 ;; License: BSD
 ;; Created: 2016-09-07
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Homepage: http://github.org/dotemacs/sort-words.el
 ;; Keywords: tools
 
@@ -44,7 +44,7 @@
 
 ;;; Code:
 
-(defun list-to-string (lst)
+(defun sort-words-list-to-string (lst)
   "convert a given list LST to a string, joined with spaces"
   (mapconcat 'identity lst " "))
 
@@ -61,10 +61,12 @@
       (save-excursion
         (save-restriction
           (narrow-to-region start end)
-          (let ((words (list-to-string (sort-words-in-region (point-min) (point-max)))))
+          (let ((words (sort-words-list-to-string (sort-words-in-region (point-min) (point-max)))))
             (delete-region (point-min) (point-max))
             (goto-char (point-min))
             (insert words))))
     (message "no region has been selected")))
+
+(provide 'sort-words)
 
 ;;; sort-words.el ends here
