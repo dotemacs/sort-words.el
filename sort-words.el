@@ -67,4 +67,6 @@
             (insert words))))
     (message "no region has been selected")))
 
+(provide 'sort-words)
+
 ;;; sort-words.el ends here
