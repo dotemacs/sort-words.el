@@ -32,7 +32,7 @@
 ;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-;; FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+;; FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE
 ;; COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
 ;; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 ;; (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
@@ -44,23 +44,24 @@
 
 ;;; Code:
 
-(defun sort-words-list-to-string (lst)
-  "convert a given list LST to a string, joined with spaces"
-  (mapconcat 'identity lst " "))
-
 (defun sort-words-in-region (start end)
-  "sorts the words in a given region and returns them as a list"
+  "Sort the words in a given region (START and END) and return them as a list."
    (sort (split-string (buffer-substring-no-properties start end)) #'string<))
+
+(defun sort-words-sorted (start end)
+  "Sort the words in a given region (START and END) and return them as a string."
+  (mapconcat 'identity (sort-words-in-region start end) " "))
 
 ;;;###autoload
 (defun sort-words (start end)
-  "Select a region, sort words within it
-   and insert them replacing the existing region"
+  "Sort words in region alphabetically.
+Then insert them replacing the existing region.
+START and END are boundries of the selected region."
   (interactive "r")
   (save-excursion
     (save-restriction
       (narrow-to-region start end)
-      (let ((words (sort-words-list-to-string (sort-words-in-region (point-min) (point-max)))))
+      (let ((words (sort-words-sorted (point-min) (point-max))))
         (delete-region (point-min) (point-max))
         (goto-char (point-min))
         (insert words)))))
