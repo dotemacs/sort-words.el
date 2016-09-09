@@ -5,7 +5,7 @@
 ;; Author: "Aleksandar Simic" <asimic@gmail.com>
 ;; License: BSD
 ;; Created: 2016-09-07
-;; Version: 0.0.3
+;; Version: 0.0.4
 ;; Homepage: http://github.org/dotemacs/sort-words.el
 ;; Keywords: tools
 
